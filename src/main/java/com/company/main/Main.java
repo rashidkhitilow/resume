@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         
-//        UserDaoInter userDao = new UserDaoImpl();//thightly coupling - klas direkt diger klasla baglidir.
+//        UserDaoInter userDao = new UserDaoImpl();//thightly coupling - klas direkt diger klasla baglidir.   
         UserDaoInter userDao = Context.instanceUserDao();//bu klass dao impl i gormur cunki atdiq Context de ki bu menim mysql le isleyeceyim UserDaoImpl() dir 
 //        sabah Oracl istifade etsem bir bunu deyisecem UserDaoImpl2 qoyacam birde proyektde coxlu deyisikliye ehtiyac olmayacaq 
 //        implementasiya ile interface i ayirdiq buda loosly coupling(ic ice kecmir iki obyekt bir birinden asli deyil) adlanir
