@@ -49,7 +49,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         User result = null;
         try (Connection c = connect()) {
             Statement stmt = c.createStatement();
-            stmt.execute("select * from users where id="+userId);
+            stmt.execute("select * from users where id=" + userId);
             ResultSet r = stmt.getResultSet();
 
             while (r.next()) {//result sql in neticesidi//next varmi sual verir.//kec novbeti setre
@@ -65,6 +65,22 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         }
 
         return result;
+    }
+
+    @Override
+    public boolean addUser(User u) {
+        try (Connection c = connect()) {
+//            Statement stmt = c.createStatement();//SQL injection olur bele sorgu yazdiqda ona gore prepared stmt yaziriq
+            PreparedStatement stmt = c.prepareStatement("insert into users(name,surname,phone,email) values (?,?,?,?) ");//bu encode edir \ qoyurs
+            stmt.setString(1, u.getName());
+            stmt.setString(2, u.getSurname());
+            stmt.setString(3, u.getPhone());
+            stmt.setString(4, u.getEmail());
+            return stmt.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override
