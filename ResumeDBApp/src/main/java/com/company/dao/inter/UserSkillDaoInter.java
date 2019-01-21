@@ -5,10 +5,13 @@
  */
 package com.company.dao.inter;
 
+import com.company.entity.UserSkill;
+import java.util.List;
+
 /**
  *
  * @author rashid.khitilov
  */
-class User {
-    
-}
+public interface UserSkillDaoInter {
+    public List<UserSkill> getAllSkillById(int userId);
+}   
